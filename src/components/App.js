@@ -9,12 +9,19 @@ import Login from './Login';
 const App = () => {
   return (
     <AppContainer>
-      <BloomHeader/>
-      <Header/>
+      <BloomHeader />
+        <Header />
       <RouteContainer>
         <Route exact path="/">
-          <Login/>
-        </Route>          
+            <Login />
+        </Route>
+        <Route path="/login">
+            <Login />
+        </Route>
+        <PrivateRoute path="/view">
+            <View />
+        </PrivateRoute>
+        <PrivateRoute path="/logout" component={Logout} />
       </RouteContainer>
     </AppContainer>
   )
