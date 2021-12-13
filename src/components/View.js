@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Route, useParams, useHistory } from 'react-router-dom';
-import { axiosWithAuth } from '../utils'
+import  axiosWithAuth from '../utils/axiosWithAuth'
 import Article from './Article';
 import EditForm from './EditForm';
 
@@ -22,9 +21,10 @@ const View = (props) => {
     }, [])
 
     const handleDelete = (id) => {
-        axiosWithAuth.delete(`http://localhost:5000/api/articles/${id}`)
+        axiosWithAuth()
+        .delete(`http://localhost:5000/api/articles/${id}`)
         .then(res => {
-            props.setArticles(res.data)
+                setArticles(res.data)
             push('/articles')
         })
         .catch(err => console.log(err))
